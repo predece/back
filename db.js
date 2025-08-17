@@ -1,7 +1,4 @@
-const { Sequelize } = require("sequelize");
-
-// Используем DATABASE_URL вместо отдельных переменных
-module.exports = new Sequelize(process.env.DATABASE_URL, {
+module.exports = new Sequelize(process.env.DATABASE_PUBLIC_URL, {
   dialect: "postgres",
   protocol: "postgres",
   dialectOptions: {
