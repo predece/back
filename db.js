@@ -1,3 +1,5 @@
+const Sequalize = require("sequelize");
+
 module.exports = new Sequelize(process.env.DATABASE_PUBLIC_URL, {
   dialect: "postgres",
   protocol: "postgres",
