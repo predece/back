@@ -51,7 +51,7 @@ class Cron {
             deadline: {
               [Op.lte]: NowDate,
             },
-            status: { [Op.ne]: "expired" },
+            status: "todo",
           },
         });
         if (ExpiredTask.length > 0) {

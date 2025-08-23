@@ -12,10 +12,10 @@ class AuthController {
       const { email, password, role } = req.body;
       const checkUser = await User.findOne({ where: { email } });
       if (!email || !password) {
-        res.json({ message: "Email and password requred" });
+        res.json({ message: "Email и password обязательны" });
       }
-      if (checkUser > 0) {
-        return res.json({ message: "This user already exist" });
+      if (checkUser) {
+        return res.json({ message: "Такой пользователь уже существует" });
       }
       const hashPassword = await bcrypt.hash(password, 12);
       const data = await User.create({ email, password: hashPassword, role });
@@ -28,15 +28,15 @@ class AuthController {
   async login(req, res) {
     const { email, password } = req.body;
     if (!email || !password) {
-      res.json({ message: "Email and password requred" });
+      res.json({ message: "Email и password обязательны" });
     }
     const data = await User.findOne({ where: { email } });
     if (!data) {
-      return res.json({ message: "This user not exist" });
+      return res.json({ message: "Такого пользователя не существует" });
     }
     const checkPassword = await bcrypt.compareSync(password, data.password);
     if (!checkPassword) {
-      return res.json({ message: "password no current" });
+      return res.json({ message: "Неверный пароль" });
     }
     const jwtToken = await token({ email, role: data.role });
     return res.json({ jwtToken });

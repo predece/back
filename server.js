@@ -12,9 +12,13 @@ const http = require("http");
 const { initSoket } = require("./socket");
 const server = http.createServer(app);
 
-app.use(cors());
-
 initSoket(server);
+
+const corsOptions = {
+  origin: "https://client-production-dcf8.up.railway.app", // Замените на источник вашего клиентского приложения
+  optionsSuccessStatus: 200, // Некоторые старые браузеры требуют этого
+};
+app.use(cors(corsOptions));
 
 app.use(express.json());
 // app.use(fileUpload());

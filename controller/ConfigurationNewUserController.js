@@ -17,12 +17,12 @@ class ProfileUser {
       }
 
       const { email, name } = req.body;
-      console.log(email, name);
+
 
       if (email && name) {
         const checkConfigUser = await User.findOne({ where: { email } });
         if (checkConfigUser.name === name) {
-          res.json({ message: "Повтор имени" });
+          return res.json({ message: "Повтор имени" });
         } else {
           configUser.name = name;
         }
