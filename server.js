@@ -15,7 +15,7 @@ const server = http.createServer(app);
 initSoket(server);
 
 const corsOptions = {
-  origin: "https://client-production-dcf8.up.railway.app", // Замените на источник вашего клиентского приложения
+  origin: "https://client-production-dcf8.up.railway.app/auth?type=login", // Замените на источник вашего клиентского приложения
   optionsSuccessStatus: 200, // Некоторые старые браузеры требуют этого
 };
 app.use(cors(corsOptions));
