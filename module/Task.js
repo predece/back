@@ -36,4 +36,5 @@ module.exports = sequelize.define("task", {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
+
 });
